@@ -1,7 +1,20 @@
 import pandas as pd
 import sys
 import random
- 
+
+def power(a,b,m):
+    """
+    Calculate 'a' power 'b' modulo 'm' using binary exponentiation
+    """
+    a = a%m
+    res = 1
+    while b>0:
+        if b&1:
+            res = res * a % m
+        a = a * a%m
+        b = b>>1
+    return res
+
 def isprime(n):
     """
     Check if a given number 'n' is prime or not
@@ -103,8 +116,9 @@ def encrypt_message(message):
     # 'encrypted_txt' is a list containg respective encrypted characters for each and every char in the input text
     encrypted_txt = []
     for char in message:
-        elem = ord(char)**e # ord(char) is used to convert the characters to respective integer format
-        encrypted_txt.append(elem%n)
+        elem = power(ord(char),e,n) # ord(char) is used to convert the characters to respective integer format (Using binary exponentiation)
+        #elem = ord(char)**e
+        encrypted_txt.append(elem)
 
     return encrypted_txt # Returning the list of encrypted characters
     
@@ -121,7 +135,8 @@ def decrypt(message):
     decrypted_msg_list = []
     
     for char in message:
-        decrypted_msg_list.append(chr((char**d)%n))
+        #decrypted_msg_list.append(chr((char**d)%n))
+        decrypted_msg_list.append(chr(power(char,d,n))) # Using Binary exponentiation 
     
     # Joining all the characters in the 'decrypted_msg_list' to get the final decrypted message as string
     decrypted_txt = ''.join(decrypted_msg_list)
