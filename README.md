@@ -16,14 +16,14 @@ Consider these assumptions for the algorithm:
 
 The algorithm is as follows:
 - Select the random values P,Q and R which are distinct
-- Calculate $N=P*Q*R$
-- Calculate $\phi(n) = (P-1)*(Q-1)*(R-1)$ 
-- Calculate $e$ such that $gcd(e, \phi(n))=1$ and $1<e<\phi(n)$
-- Encrypt the message $M$ where $M<n$ and encrypt with public key $e$ such that C=M<sup>e</sup>mod n
-- Calculate private key d = e<sup>-1</sup> (mod $\phi(n)$)
+- Calculate N=P\*Q\*R
+- Calculate Φ(n) = (P-1)\*(Q-1)\*(R-1) 
+- Calculate e such that gcd(e, Φ(n))=1 and 1< e< Φ(n)
+- Encrypt the message M where M< n and encrypt with public key e such that C=M<sup>e</sup>mod n
+- Calculate private key d = e<sup>-1</sup> (mod Φ(n))
 - Decrypt the message M such that M = C<sup>d</sup>mod n
 
-***Note:*** Calculating M<sup>e</sup> and C<sup>d</sup> are the most time consuming steps of this algorithm as we are dealing with very large prime numbers. I have used **Binary Exponentiation** to solve this problem of calculating the powers by reducing the time complexity from $O(e)$ and $O(d)$ to $O(log(e))$ and $O(log(d))$ 
+***Note:*** Calculating M<sup>e</sup> and C<sup>d</sup> are the most time consuming steps of this algorithm as we are dealing with very large prime numbers. I have used **Binary Exponentiation** to solve this problem of calculating the powers by reducing the time complexity from O(e) and O(d) to O(log(e)) and O(log(d))
 
 ## Software Requirements
 - [Python3](https://www.python.org/downloads/)
